@@ -7,6 +7,8 @@ status: Draft
 type: <Standards | Informational | Meta>
 category (*only required for Standard Track): <Core | Networking | Protocol | Schema>
 created: <date created on, in ISO 8601 (yyyy-mm-dd) format>
+targetSDK: <to be assigned>
+finalSDK: <to be assigned>
 requires (*optional): <MIP number(s)>
 replaces (*optional): <MIP number(s)>
 ---

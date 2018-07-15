@@ -42,7 +42,7 @@ Parties involved in the process are you, the champion or *MIP author*, the [*MIP
 Your role as the champion is to write the MIP using the style and format described below, shepherd the discussions in the appropriate forums, and build community consensus around the idea. Following is the process that a successful MIP will move along:
 
 ```
-[ DRAFT ] -> ( VOTE ) -> [ ACCEPTED ] -> [ FINAL ] ... [ *SUPERCEDED* ]
+[ DRAFT ] -> ( VOTE ) -> [ ACCEPTED ] -> [ FINAL ] ... * SUPERCEDED *
                                       -> [ DEFERRED ]
                          [ REJECTED ]
 ```
@@ -57,7 +57,7 @@ Each status change is requested by the MIP author and reviewed by the MIP editor
   * :arrow_right: **Final** (Information and Process MIPs) -- A successful **Vote** without material changes or unaddressed complaints will become Final.
   * :x: **Rejected** -- Voting results in community closing this MIP submission permanently. The draft PR will remain in the MIPs repo for historical purposes.
   * :x: **Draft** --  Voting results in material changes or substantial unaddressed complaints will cause the MIP to revert to **Draft**.
-* **Accepted (Core MIPs only)** -- This is being implemented by Libertaria Developers.
+* **Accepted** -- This is being implemented by Libertaria Developers and has a target SDK assigned.
   * :arrow_right: **Final** -- Standards MIPs must be implemented before they can be considered **Final**. When the implementation is complete and supported by the community, the status will 'automatically' be considered **Final**.
 * **Final** -- This MIP represents the current state-of-the-art. A Final MIP should only be updated to correct errata.
 
@@ -75,9 +75,8 @@ Each MIP should have the following parts:
 - Abstract - a short (~200 word) description of the technical issue being addressed.
 - Motivation (*optional) - The motivation is critical for MIPs that want to change the Mercury protocol (type: Standards). It should clearly explain why the existing protocol specification is inadequate to address the problem that the MIP solves. MIP submissions without sufficient motivation may be rejected outright.
 - Specification - The technical specification should describe the syntax and semantics of any new feature. The specification should be detailed enough to allow competing, interoperable implementations for any of the current Mercury platforms, [and others](https://github.com/libertaria-project/wiki/wiki/Clients).
-- Rationale - The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work, e.g. how the feature is supported in other languages. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.
+- Rationale - The rationale (ex. a use case/user story) fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work, e.g. how the feature is supported in other languages. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.
 - Backwards Compatibility - All MIPs that introduce backwards incompatibilities must include a section describing these incompatibilities and their severity. The MIP must explain how the author proposes to deal with these incompatibilities. MIP submissions without a sufficient backwards compatibility treatise may be rejected outright.
-- Test Cases - Test cases for an implementation are mandatory for MIPs that are affecting consensus changes. Other MIPs can choose to include links to test cases if applicable.
 - Implementations - The implementations must be completed before any MIP is given status “Final”, but it need not be completed before the MIP is merged as draft. While there is merit to the approach of reaching consensus on the specification and rationale before writing code, the principle of “rough consensus and running code” is still useful when it comes to resolving many discussions of API details.
 - Copyright Waiver - All MIPs must be in the public domain. See the bottom of this MIP for an example copyright waiver.
 
@@ -108,6 +107,10 @@ Each MIP must begin with an RFC 822 style header preamble, preceded and followed
 
 ` created:` <date created on, in ISO 8601 (yyyy-mm-dd) format>
 
+` * targetSDK:` <assigned by MIP editor/Core developers for future implementation of **Accepted** MIPs>
+
+` * finalSDK:`  <assigned by MIP editor on reaching **Final** status>
+
 ` * requires:` <MIP number(s)>
 
 ` * replaces:` <MIP number(s)>
@@ -130,11 +133,11 @@ Random J. User
 
 if the email address is not given.
 
-While an MIP is a draft, a discussions-to header will indicate the mailing list or URL where the MIP is being discussed. As mentioned above, examples for places to discuss your MIP include [Mercury topics on Gitter](https://gitter.im/libertaria-project/topics), an issue in this repo or in a fork of this repo and [Reddit r/ethereum](https://www.reddit.com/r/libertaria-project/). No discussions-to header is necessary if the MIP is being discussed privately with the author.
+While an MIP is a draft, a discussions-to header will indicate the mailing list or URL where the MIP is being discussed in addition to the comments in the MIP PR. As mentioned above, examples for places to discuss your MIP include ???. No discussions-to header is necessary if the MIP is being discussed privately with the author.
 
-The type header specifies the type of MIP: Standards Track, Meta, or Informational. If the track is Standards please include the subcategory (core, networking, protocol, or schema).
+The type header specifies the type of MIP: Standards, Informational, or Process. If the type is Standards please include the subcategory (Core, Networking, Protocol, or Schema).
 
-The category header specifies the MIP's category. This is required for standards-track MIPs only.
+The category header specifies the MIP's category. This is required for Standards MIPs only.
 
 The created header records the date that the MIP was assigned a number. Both headers should be in yyyy-mm-dd format, e.g. 2001-08-14.
 
@@ -184,7 +187,7 @@ Once the MIP is ready for the repository, the MIP editor will:
 
 - Send a message back to the MIP author with the next step.
 
-Many MIPs are written and maintained by developers with write access to the Mercury codebase. The MIP editors monitor MIP changes, and correct any structure, grammar, spelling, or markup mistakes we see.
+Many MIPs are written and maintained by developers with write access to the MIPs repo. The MIP editors monitor MIP changes, and correct any structure, grammar, spelling, or markup mistakes we see.
 
 The editors don't pass judgment on MIPs. We merely do the administrative & editorial part.
 
