@@ -23,10 +23,10 @@ For Mercury implementers, MIPs are a convenient way to track the progress of the
 There are three types of MIP:
 
 - A **Standards MIP** describes any change that affects most or all Mercury implementations, such as a change to the network protocol, a shared schema, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using Mercury. Furthermore Standards MIPs can be broken down into the following categories. Standards MIPs consist of three parts, a design document, implementation, and finally if warranted an update to the [formal specification].
-  - **Core** - improvements requiring a consensus fork (e.g. [MIP5], [MIP101]), as well as changes that are not necessarily consensus critical but may be relevant to [“core dev” discussions](https://github.com/libertaria-project/pm) (for example, [MIP90], and the miner/node strategy changes 2, 3, and 4 of [MIP86]).
-  - **Networking** - includes improvements around [devp2p] ([MIP8]) and [Light Mercury Subprotocol], as well as proposed improvements to network protocol specifications of [whisper] and [swarm].
-  - **Protocol** - includes improvements around client [API/RPC] specifications and standards, and also certain language-level standards like method names ([MIP59], [MIP6]) and [contract ABIs]. The label “interface” aligns with the [interfaces repo] and discussion should primarily occur in that repository before an MIP is submitted to the MIPs repository.
-  - **Schema** - application-level standard schemas for shared structured data (ex. profiles/relationships).
+  - **Core** - includes improvements around...
+  - **Networking** - includes improvements around...
+  - **Protocol** - includes improvements around client-server and server-server protocols
+  - **Schema** - API-level standard schemas for shared structured data (ex. profiles/relationships).
 - An **Informational MIP** describes an Mercury design issue, or provides general guidelines or information to the Mercury community, but does not propose a new feature. Informational MIPs do not necessarily represent Mercury community consensus or a recommendation, so users and implementers are free to ignore Informational MIPs or follow their advice.
 - A **Process MIP** describes a process surrounding Mercury or proposes a change to (or an event in) a process. Process MIPs are like Standards Track MIPs but apply to areas other than the Mercury protocol itself. They may propose an implementation, but not to Mercury's codebase; they often require community consensus; unlike Informational MIPs, they are more than recommendations, and users are typically not free to ignore them. Examples include procedures, guidelines, changes to the decision-making process, and changes to the tools or environment used in Mercury development.
 
