@@ -1,8 +1,8 @@
 ---
 mip: 1
 title: MIP Purpose and Guidelines
-status: Active
-type: Meta
+status: Draft
+type: Process
 author: Byron Blattel (@alchebyte) and others
 created: 2018-07-13
 ---
@@ -13,7 +13,7 @@ MIP stands for Mercury Improvement Proposal. A MIP is a design document providin
 
 ## MIP Rationale
 
-We intend MIPs to be the primary mechanisms for proposing new features, for collecting community input on an issue, and for documenting the design decisions that have gone into Mercury. Because the MIPs are maintained as text files in a versioned repository, their revision history is the historical record of the feature proposal.
+We intend MIPs to be the primary mechanisms for proposing new features, for collecting community input on an issue, and for documenting the design decisions that go into Mercury. Because the MIPs are maintained as text files in a versioned repository, their revision history is the historical record of the feature proposal.
 
 For Mercury implementers, MIPs are a convenient way to track the progress of their implementation. Ideally each implementation maintainer would list the MIPs that they have implemented. This will give end users a convenient way to know the current status of a given implementation or library.
 
@@ -21,15 +21,15 @@ For Mercury implementers, MIPs are a convenient way to track the progress of the
 
 There are three types of MIP:
 
-- A **Standards MIP** describes any change that affects most or all Mercury implementations, such as a change to the network protocol, a shared schema, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using Mercury. Furthermore Standards MIPs can be broken down into the following categories. Standards MIPs consist of three parts, a design document, implementation, and finally if warranted an update to the [formal specification].
+- A **Standards** MIP describes any change that affects most or all Mercury implementations, such as a change to the network protocol, a shared schema, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using Mercury. Furthermore Standards MIPs can be broken down into the following categories. Standards MIPs consist of three parts, a design document, implementation, and finally if warranted an update to the [formal specification].
   - **Core** - includes improvements around...
   - **Networking** - includes improvements around...
   - **Protocol** - includes improvements around client-server and server-server protocols
   - **Schema** - API-level standard schemas for shared structured data (ex. profiles/relationships).
-- An **Informational MIP** describes an Mercury design issue, or provides general guidelines or information to the Mercury community, but does not propose a new feature. Informational MIPs do not necessarily represent Mercury community consensus or a recommendation, so users and implementers are free to ignore Informational MIPs or follow their advice.
-- A **Process MIP** describes a process surrounding Mercury or proposes a change to (or an event in) a process. Process MIPs are like Standards MIPs but apply to areas other than the Mercury protocol itself. They may propose an implementation, but not to Mercury's codebase; they often require community consensus; unlike Informational MIPs, they are more than recommendations, and users are typically not free to ignore them. Examples include procedures, guidelines, changes to the decision-making process, and changes to the tools or environment used in Mercury development.
+- An **Informational** MIP describes an Mercury design issue, or provides general guidelines or information to the Mercury community, but does not propose a new feature. Informational MIPs do not necessarily represent Mercury community consensus or a recommendation, so users and implementers are free to ignore Informational MIPs or follow their advice.
+- A **Process** MIP describes a process surrounding Mercury or proposes a change to (or an event in) a process. Process MIPs are like Standards MIPs but apply to areas other than the Mercury protocol itself. They may propose an implementation, but not to Mercury's codebase; they often require community consensus; unlike Informational MIPs, they are more than recommendations, and users are typically not free to ignore them. Examples include procedures, guidelines, changes to the decision-making process, and changes to the tools or environment used in Mercury development.
 
-It is highly recommended that a single MIP contain a single key proposal or new idea. The more focused the MIP, the more successful it tends to be. A change to one client doesn't require an MIP; a change that affects multiple clients, or defines a standard for multiple apps to use, does.
+It is highly recommended that a single MIP contain a single key proposal or new idea. The more focused the MIP, the more successful it is likely to be. A change to one client doesn't require an MIP; a change that affects multiple clients, or defines a standard for multiple apps to use, does.
 
 An MIP must meet certain minimum criteria. It must be a clear and complete description of the proposed enhancement. The enhancement must represent a net improvement. The proposed implementation, if applicable, must be solid and must not complicate the protocol unduly.
 
@@ -42,32 +42,29 @@ Parties involved in the process are you, the champion or *MIP author*, the [*MIP
 Your role as the champion is to write the MIP using the style and format described below, shepherd the discussions in the appropriate forums, and build community consensus around the idea. Following is the process that a successful MIP will move along:
 
 ```
-[ WIP ] -> [ DRAFT ] -> ( VOTE ) -> [ ACCEPTED ] -> [ FINAL ]
-                                 -> [ DEFERRED | REJECTED ]
+[ DRAFT ] -> ( VOTE ) -> [ ACCEPTED ] -> [ FINAL ] ... [ *SUPERCEDED* ]
+                                      -> [ DEFERRED ]
+                         [ REJECTED ]
 ```
 
 Each status change is requested by the MIP author and reviewed by the MIP editors. Use a pull request to update the status. Please include a link to where people should continue discussing your MIP. The MIP editors will process these requests as per the conditions below.
 
-* **Work in progress (WIP)** -- Once the champion has asked the Mercury community whether an idea has any chance of support, they will write a draft MIP as a [pull request]. Consider including an implementation if this will aid people in studying the MIP.
-  * :arrow_right: Draft -- If agreeable, MIP editor will assign the MIP a number (generally the issue or PR number related to the MIP) and merge your pull request. The MIP editor will not unreasonably deny an MIP.
-  * :x: Draft -- Reasons for denying draft status include being too unfocused, too broad, duplication of effort, being technically unsound, not providing proper motivation or addressing backwards compatibility, or not in keeping with the [Mercury philosophy](https://github.com/libertaria-project/wiki/wiki/White-Paper#philosophy).
-* **Draft** -- Once the first draft has been merged, you may submit follow-up pull requests with further changes to your draft until such point as you believe the MIP to be mature and ready to proceed to the next status. An MIP in draft status must be implemented to be considered for promotion to the next status (ignore this requirement for core MIPs).
-  * :arrow_right: Last Call -- If agreeable, the MIP editor will assign Last Call status and set a review end date, normally 14 days later.
-  * :x: Last Call -- A request for Last Call status will be denied if material changes are still expected to be made to the draft. We hope that MIPs only enter Last Call once, so as to avoid unnecessary noise on the RSS feed. Last Call will be denied if the implementation is not complete and supported by the community.
-* **Last Call** -- This MIP will listed prominently on the http://mips.libertaria.world/ website (subscribe via RSS at [last-call.xml](/last-call.xml)).
-  * :x: -- A Last Call which results in material changes or substantial unaddressed complaints will cause the MIP to revert to Draft.
-  * :arrow_right: Accepted (Core MIPs only) -- After the review end date, the Libertaria Developers will vote on whether to accept this change. If yes, the status will upgrade to Accepted.
-  * :arrow_right: Final (Not core MIPs) -- A successful Last Call without material changes or unaddressed complaints will become Final.
+* **Draft** -- Once the champion has asked the Mercury community whether an idea has any chance of support, they will write and submit a draft MIP as a [pull request]. The PR will initiate a discussion with the MIP editor(s) to prepare the **Draft** MIP for a vote.
+  * :arrow_right: **Vote** (*pending*) -- If/when requirements for MIP submission are met, a MIP editor will assign the MIP a number (generally the PR number related to the MIP) and merge your pull request. The MIP editor will not unreasonably deny an MIP.
+  * :x: **Draft** -- Reasons for denying **Vote** (*pending*) status include being too unfocused, too broad, duplication of effort, being technically unsound, not providing proper motivation or addressing backwards compatibility, or not in keeping with the [Libertaria Bluepaper](https://drive.google.com/file/d/10dRjiuRzcC3TlaKGYFA4duG7FlfUtH7L/view).
+* **Vote** -- Once the first draft has been merged, you may submit follow-up pull requests with further changes to your MIP until such point as you believe the MIP to be mature and ready to proceed to the next status via a Core/Community vote. To advance the MIP to a vote, add the 'VOTE' tag to the draft MIP PR. This will notify the MIP editors to put the MIP up for vote by the Core/Community. The vote will have one of four outcomes-
+  * :arrow_right: **Accepted** (Standards MIPs) -- The Libertaria Developers will assign a target SDK version for release of the implementation. Once implemented the **Accepted** MIP will 'automatically' become **Final** for the SDK version it was first implemented in.
+  * :arrow_right: **Final** (Information and Process MIPs) -- A successful **Vote** without material changes or unaddressed complaints will become Final.
+  * :x: **Rejected** -- Voting results in community closing this MIP submission permanently. The draft PR will remain in the MIPs repo for historical purposes.
+  * :x: **Draft** --  Voting results in material changes or substantial unaddressed complaints will cause the MIP to revert to **Draft**.
 * **Accepted (Core MIPs only)** -- This is being implemented by Libertaria Developers.
-  * :arrow_right: Final -- Standards Track Core MIPs must be implemented in at least two (2) viable Mercury clients before it can be considered Final. When the implementation is complete and supported by the community, the status will be changed to “Final”.
+  * :arrow_right: **Final** -- Standards MIPs must be implemented before they can be considered **Final**. When the implementation is complete and supported by the community, the status will 'automatically' be considered **Final**.
 * **Final** -- This MIP represents the current state-of-the-art. A Final MIP should only be updated to correct errata.
 
 Other exceptional statuses include:
 
-* Deferred -- This is for core MIPs that have been put off for a future hard fork.
-* Rejected -- An MIP that is fundamentally broken and will not be implemented.
-* Active -- This is similar to Final, but denotes an MIP which which may be updated without changing its MIP number.
-* Superseded -- An MIP which was previously final but is no longer considered state-of-the-art. Another MIP will be in Final status and reference the Superseded MIP.
+* **Deferred** -- This is for **Accepted** (Standards) MIPs that have been delayed to a later SDK for implemenation (for technical or other reasons).
+* **Superseded** -- An MIP which was previously **Final** but is no longer considered state-of-the-art. Another MIP will be in Final status and reference the Superseded MIP.
 
 ## What belongs in a successful MIP?
 
@@ -101,7 +98,7 @@ Each MIP must begin with an RFC 822 style header preamble, preceded and followed
 
 ` * discussions-to:` <url>
 
-` status:` <Draft | Last Call | Accepted | Final | Active | Deferred | Rejected | Superseded>
+` status:` <Draft | Vote | Accepted | Final | Active | Deferred | Rejected | Superseded>
 
 `* review-period-end: YYYY-MM-DD
 
