@@ -4,7 +4,6 @@ title: MIP Purpose and Guidelines
 status: Active
 type: Meta
 author: Byron Blattel (@alchebyte) and others
-        https://github.com/libertaria-project/MIPs/blob/master/MIPS/mip-1.md
 created: 2018-07-13
 ---
 
@@ -43,7 +42,8 @@ Parties involved in the process are you, the champion or *MIP author*, the [*MIP
 Your role as the champion is to write the MIP using the style and format described below, shepherd the discussions in the appropriate forums, and build community consensus around the idea. Following is the process that a successful MIP will move along:
 
 ```
-[ WIP ] -> [ DRAFT ] -> [ VOTE ] -> [ ACCEPTED ] -> [ FINAL ]
+[ WIP ] -> [ DRAFT ] -> ( VOTE ) -> [ ACCEPTED ] -> [ FINAL ]
+                                 -> [ DEFERRED | REJECTED ]
 ```
 
 Each status change is requested by the MIP author and reviewed by the MIP editors. Use a pull request to update the status. Please include a link to where people should continue discussing your MIP. The MIP editors will process these requests as per the conditions below.
@@ -105,7 +105,7 @@ Each MIP must begin with an RFC 822 style header preamble, preceded and followed
 
 `* review-period-end: YYYY-MM-DD
 
-` type: `<Standards Track (Core, Networking, Protocol, Schema)  | Informational | Meta>
+` type: `<Standards | Informational | Meta>
 
 ` * category:` <Core | Networking | Protocol | Schema>
 
@@ -116,8 +116,6 @@ Each MIP must begin with an RFC 822 style header preamble, preceded and followed
 ` * replaces:` <MIP number(s)>
 
 ` * superseded-by:` <MIP number(s)>
-
-` * resolution:` <url>
 
 #### Author header
 
@@ -134,8 +132,6 @@ if the email address or GitHub username is included, and
 Random J. User
 
 if the email address is not given.
-
-Note: The resolution header is required for Standards Track MIPs only. It contains a URL that should point to an email message or other web resource where the pronouncement about the MIP is made.
 
 While an MIP is a draft, a discussions-to header will indicate the mailing list or URL where the MIP is being discussed. As mentioned above, examples for places to discuss your MIP include [Mercury topics on Gitter](https://gitter.im/libertaria-project/topics), an issue in this repo or in a fork of this repo and [Reddit r/ethereum](https://www.reddit.com/r/libertaria-project/). No discussions-to header is necessary if the MIP is being discussed privately with the author.
 
