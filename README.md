@@ -12,7 +12,7 @@ A browsable version of all current and draft MIPs can be found on [the official 
 
 Your PR should include a first draft of the final MIP. It must meet the formatting criteria enforced by the build (largely, correct metadata in the header). If applicable, make sure you include a `discussions-to` header with the URL to any outside discussion forum or open GitHub issue where people can discuss the MIP as a whole.
 
-When you believe your MIP is mature and ready to progress past the draft phase add a 'VOTE' label to the PR. This will put the MIP on a board where the community can vote to include it. If the Libertaria Community agrees to include it, the MIP editors will update the state of your MIP to 'Accepted' and (optionally) assigned an SDK version to target for implementation. Additionally, the PR number shall become the MIP number (MIP-n) and the PR commit shall be revised to rename and move the MIP into the MIPs folder for final storage in the MIPS repo (./MIPS/MIPs/mip-n.md)
+When you believe your MIP is mature and ready to progress past the draft phase add a 'VOTE' label to the PR. This will put the MIP on a board where the community can vote to include it. If the Libertaria Community agrees to include it, the MIP editors will update the state of your MIP to 'Accepted' and (optionally) assign an SDK version to target for implementation. Additionally, the PR number shall become the MIP number (MIP-n) and the PR commit shall be revised to rename and move the MIP into the MIPs folder for final storage in the MIPS repo (./MIPS/MIPs/mip-n.md)
 
 # MIP Status Terms
 * **Draft** - a MIP that is open for consideration.
