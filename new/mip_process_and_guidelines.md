@@ -28,7 +28,7 @@ There are three types of MIP:
   - **Protocol** - includes improvements around client-server and server-server protocols
   - **Schema** - API-level standard schemas for shared structured data (ex. profiles/relationships).
 - An **Informational MIP** describes an Mercury design issue, or provides general guidelines or information to the Mercury community, but does not propose a new feature. Informational MIPs do not necessarily represent Mercury community consensus or a recommendation, so users and implementers are free to ignore Informational MIPs or follow their advice.
-- A **Process MIP** describes a process surrounding Mercury or proposes a change to (or an event in) a process. Process MIPs are like Standards Track MIPs but apply to areas other than the Mercury protocol itself. They may propose an implementation, but not to Mercury's codebase; they often require community consensus; unlike Informational MIPs, they are more than recommendations, and users are typically not free to ignore them. Examples include procedures, guidelines, changes to the decision-making process, and changes to the tools or environment used in Mercury development.
+- A **Process MIP** describes a process surrounding Mercury or proposes a change to (or an event in) a process. Process MIPs are like Standards MIPs but apply to areas other than the Mercury protocol itself. They may propose an implementation, but not to Mercury's codebase; they often require community consensus; unlike Informational MIPs, they are more than recommendations, and users are typically not free to ignore them. Examples include procedures, guidelines, changes to the decision-making process, and changes to the tools or environment used in Mercury development.
 
 It is highly recommended that a single MIP contain a single key proposal or new idea. The more focused the MIP, the more successful it tends to be. A change to one client doesn't require an MIP; a change that affects multiple clients, or defines a standard for multiple apps to use, does.
 
@@ -36,14 +36,14 @@ An MIP must meet certain minimum criteria. It must be a clear and complete descr
 
 ## MIP Work Flow
 
-Parties involved in the process are you, the champion or *MIP author*, the [*MIP editors*](#mip-editors), and the [*Libertaria Developers*](https://github.com/orgs/libertaria-project/people).
+Parties involved in the process are you, the champion or *MIP author*, the [*MIP editors*](#mip-editors), and the [*Libertaria Developers*](https://github.com/orgs/libertaria-project/teams/devs).
 
 :warning: Before you begin, vet your idea, this will save you time. Ask the Mercury community first if an idea is original to avoid wasting time on something that will be be rejected based on prior research (searching the Internet does not always do the trick). It also helps to make sure the idea is applicable to the entire community and not just the author. Just because an idea sounds good to the author does not mean it will work for most people in most areas where Mercury is used. Examples of appropriate public forums to gauge interest around your MIP include [the Mercury Discord channel], [the Issues section of this repository], and [one of the Libertaria Discord or Telegram channels]. In particular, [the Issues section of this repository] is an excellent place to discuss your proposal with the community and start creating a more formalized language around your MIP.
 
 Your role as the champion is to write the MIP using the style and format described below, shepherd the discussions in the appropriate forums, and build community consensus around the idea. Following is the process that a successful MIP will move along:
 
 ```
-[ WIP ] -> [ DRAFT ] -> [ LAST CALL ] -> [ ACCEPTED ] -> [ FINAL ]
+[ WIP ] -> [ DRAFT ] -> [ VOTE ] -> [ ACCEPTED ] -> [ FINAL ]
 ```
 
 Each status change is requested by the MIP author and reviewed by the MIP editors. Use a pull request to update the status. Please include a link to where people should continue discussing your MIP. The MIP editors will process these requests as per the conditions below.
@@ -76,7 +76,7 @@ Each MIP should have the following parts:
 - Preamble - RFC 822 style headers containing metadata about the MIP, including the MIP number, a short descriptive title (limited to a maximum of 44 characters), and the author details. See [below](https://github.com/libertaria-project/MIPs/blob/master/MIPS/mip-1.md#mip-header-preamble) for details.
 - Simple Summary - “If you can’t explain it simply, you don’t understand it well enough.” Provide a simplified and layman-accessible explanation of the MIP.
 - Abstract - a short (~200 word) description of the technical issue being addressed.
-- Motivation (*optional) - The motivation is critical for MIPs that want to change the Mercury protocol. It should clearly explain why the existing protocol specification is inadequate to address the problem that the MIP solves. MIP submissions without sufficient motivation may be rejected outright.
+- Motivation (*optional) - The motivation is critical for MIPs that want to change the Mercury protocol (type: Standards). It should clearly explain why the existing protocol specification is inadequate to address the problem that the MIP solves. MIP submissions without sufficient motivation may be rejected outright.
 - Specification - The technical specification should describe the syntax and semantics of any new feature. The specification should be detailed enough to allow competing, interoperable implementations for any of the current Mercury platforms, [and others](https://github.com/libertaria-project/wiki/wiki/Clients).
 - Rationale - The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work, e.g. how the feature is supported in other languages. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.
 - Backwards Compatibility - All MIPs that introduce backwards incompatibilities must include a section describing these incompatibilities and their severity. The MIP must explain how the author proposes to deal with these incompatibilities. MIP submissions without a sufficient backwards compatibility treatise may be rejected outright.
