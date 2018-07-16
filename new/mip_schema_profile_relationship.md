@@ -1,17 +1,18 @@
 ---
 mip: <to be assigned>
-title: Profile and Relationship Schema
+title: Profile, Relationship, and Metadata Schemas
 author: Byron Blattel (@alchebyte)
 status: Draft
 type: Standards
 category: Schema
-created: 2018-7-13
+created: 2018-7-15
 ---
 ## Simple Summary
 <!--"If you can't explain it simply, you don't understand it well enough." Provide a simplified and layman-accessible explanation of the MIP.-->
-For proper interoperability between Mercury dApps, a standardized schema for Profiles and their Relationships is desired.
 
-To provide maximum adaptability for clients, the Profile (and it's Relationships) are not serialized as typed protocol elements. Instead the Profile is returned as a json 
+For proper interoperability between Mercury dApps, a standardized schema for Profiles, their Relationships, and shared Metadata must be defined.
+
+To provide maximum adaptability and interoperability for clients and dApps, the Profile (and it's Relationships) are not serialized as typed protocol elements. Instead the Profile is returned as a json 
 
 ## Abstract
 <!--A short (~200 word) description of the technical issue being addressed.-->
