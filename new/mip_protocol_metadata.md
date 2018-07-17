@@ -30,18 +30,18 @@ defined with the following capnproto protocol objects.
 struct MetaType
 {
     # key is string (optionally) preceded by a namespace and colon 
-    # key type is inferred from string by convention-
+    # key 'type' is inferred from string by convention-
     #   - MIP defined, ex. "mip-n:phone-cell", "mip-n:homes"
-    #   - dApp defined, ex. 'app-myfavapp:id', 'app-gigit:username'
-    #   - ad hoc/anonymous, ex. 'hairColor', 'petNames', '139d2275-1d3b-4ba7-9d28-9a1231e7f49d'
+    #   - dApp defined, ex. "app-myfavapp:id", "app-gigit:username"
+    #   - ad hoc/anonymous, ex. "hairColor", "petNames", "139d2275-1d3b-4ba7-9d28-9a1231e7f49d"
     key @0 :Text;
 
     # type is a string that represents a 'semi-opionated' type definition 
     # consisting of
-    #   - built-in types, ex. 'text', 'bool', etc.
-    #   - protocol types, ex. 'List(RelationProof)'
-    #   - mip shape types, ex. 'mip-n.phone-number, mip-3.car'
-    #   - app shape types, ex. 'app-abc.widget'
+    #   - built-in types, ex. "text", "bool", etc.
+    #   - protocol types, ex. "List(RelationProof)"
+    #   - mip shape types, ex. "mip-n.phone-number", "mip-3.car"
+    #   - app shape types, ex. "app-abc.widget"
     type @1 :Text;
 }
 
