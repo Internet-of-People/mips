@@ -36,6 +36,7 @@ struct MetaShape
     types @0 :List(MetaType);
 }
 
+# metadata repository/container
 struct MetaData
 {
     entries @0 :List(Entry);
@@ -48,11 +49,13 @@ struct MetaData
 
 struct Profile
 {
-    # NOTE these are mandatory in the API, but will be serialized into the data instead
-    id        @0 : ProfileId;
-    publicKey @1 : PublicKey;
-    data      @2 : Metadata;
-    # homes, addresses, appId are moved to data
+    # homes, addresses, appId are moved to OwnProfile.data
+}
+
+struct OwnProfile
+{
+    profile     @0 : Profile;
+    data        @2 : Metadata;
 }
 
 interface ProfileRepo
