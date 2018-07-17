@@ -34,18 +34,20 @@ struct MetaType
     #   - MIP defined, ex. "mip-n:phone-cell", "mip-n:homes"
     #   - dApp defined, ex. "app-myfavapp:id", "app-gigit:username"
     #   - ad hoc/anonymous, ex. "hairColor", "petNames", "139d2275-1d3b-4ba7-9d28-9a1231e7f49d"
+    
     key @0 :Text;
 
     # type is a string that represents a 'semi-opionated' type definition 
     # consisting of
-    #   - built-in types, ex. "text", "bool", etc.
-    #   - protocol types, ex. "List(RelationProof)"
-    #   - mip shape types, ex. "mip-n.phone-number", "mip-3.car"
-    #   - app shape types, ex. "app-abc.widget"
+    #   - built-in types, ex. "Text", "Bool", "UInt32", "Data", etc. see https://capnproto.org/language.html#built-in-types
+    #   - protocol types, ex. "Relation", "List(RelationProof)", "List(Text)", etc.
+    #   - mip shape types, ex. "MIP-N.PhoneNumber", "MIP-3.Car"
+    #   - app shape types, ex. "APP-abc.Widget-1"
+    
     type @1 :Text;
 }
 
-# Duck (runtime) or structural/property-based (storagetime) typing is achieved 
+# Duck (run time) or structural/property-based (storage/wire time) typing is achieved 
 # by created a list of MetaTypes. The definition/instance of that list of types 
 # can be thought of as a 'shape' for the data
 struct MetaShape
