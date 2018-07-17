@@ -29,22 +29,20 @@ defined with the following capnproto protocol objects.
 # key-value pair, metadata repository
 struct MetaType
 {
+    key @0 :Text;
     # key is string (optionally) preceded by a namespace and colon 
     # key 'type' is inferred from string by convention-
     #   - MIP defined, ex. "mip-n:phone-cell", "mip-n:homes"
     #   - dApp defined, ex. "app-myfavapp:id", "app-gigit:username"
     #   - ad hoc/anonymous, ex. "hairColor", "petNames", "139d2275-1d3b-4ba7-9d28-9a1231e7f49d"
-    
-    key @0 :Text;
 
+    type @1 :Text;
     # type is a string that represents a 'semi-opionated' type definition 
     # consisting of
     #   - built-in types, ex. "Text", "Bool", "UInt32", "Data", etc. see https://capnproto.org/language.html#built-in-types
     #   - protocol types, ex. "Relation", "List(RelationProof)", "List(Text)", etc.
     #   - mip shape types, ex. "MIP-N.PhoneNumber", "MIP-3.Car"
     #   - app shape types, ex. "APP-abc.Widget-1"
-    
-    type @1 :Text;
 }
 
 # Duck (run time) or structural/property-based (storage/wire time) typing is achieved 
