@@ -29,20 +29,24 @@ defined with the following capnproto protocol objects.
 # key-value pair, metadata repository
 struct MetaType
 {
-    # key is string (optionally) preceded by a namespace and colon (by mip #) 
-    # ex. "mip-n:phone-cell", "mip-n:homes"
+    # key is string (optionally) preceded by a namespace and colon 
+    # key type is inferred from string by convention-
+    #   - MIP defined, ex. "mip-n:phone-cell", "mip-n:homes"
+    #   - dApp defined, ex. 'app-myfavapp:id', 'app-gigit:username'
+    #   - ad hoc/anonymous, ex. 'hairColor', 'petNames', '139d2275-1d3b-4ba7-9d28-9a1231e7f49d'
     key @0 :Text;
+
     # type is a string that represents a 'semi-opionated' type definition 
     # consisting of
-    #   - built-in types ('text', 'bool', etc.)
-    #   - protocol types List(RelationProof),
-    #   - shape types ('mip-n.phone-number, mip-3.car')
-    #   - app (or anonymous) shape types ('app-123.widget')
+    #   - built-in types, ex. 'text', 'bool', etc.
+    #   - protocol types, ex. 'List(RelationProof)'
+    #   - mip shape types, ex. 'mip-n.phone-number, mip-3.car'
+    #   - app shape types, ex. 'app-abc.widget'
     type @1 :Text;
 }
 
 # Duck (runtime) or structural/property-based (storagetime) typing is achieved 
-# by created a list of MetaTypes. The defintion/instance of that list of types 
+# by created a list of MetaTypes. The definition/instance of that list of types 
 # can be thought of as a 'shape' for the data
 struct MetaShape
 {
