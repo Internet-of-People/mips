@@ -25,7 +25,7 @@ standardized elements representing the nodes and edges that define the OSG.
 The Profile (node) and Relation (edge) data structures of the Mercury OSG are 
 defined with the following capnproto protocol objects.
 ```
-# proposal for metadata formalization via "shape's" of a semi-opinionated, typed 
+# proposal for metadata formalization via shape's of a semi-opinionated, typed 
 # key-value pair, metadata repository
 struct MetaType
 {
