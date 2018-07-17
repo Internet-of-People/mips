@@ -1,6 +1,6 @@
 ---
-mip: <to be assigned>
-title: MIP- Protocol Metadata
+mip: MIP-2
+title: Protocol Metadata
 author: Byron Blattel (@alchebyte)
 status: Draft
 type: Standards
