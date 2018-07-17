@@ -1,6 +1,6 @@
 ---
 mip: <to be assigned>
-title: Protocol object Metadata
+title: MIP- Protocol Metadata
 author: Byron Blattel (@alchebyte)
 status: Draft
 type: Standards
