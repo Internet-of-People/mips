@@ -22,8 +22,6 @@ schema for Profiles and their Relationships must be defined. A main goal for
 Mercury is enabling the Open Social Graph. This metadata will represent the 
 standardized elements representing the nodes and edges that define the OSG.
 ## Specification
-The Profile (node) and Relation (edge) data structures of the Mercury OSG are 
-defined with the following capnproto protocol objects.
 ```
 struct MetaType {
     # typed key for key-value dictionary/map container
@@ -31,17 +29,17 @@ struct MetaType {
     key @0 :Text;
     # key is string (optionally) preceded by a namespace and colon 
     # key 'type' is inferred from string by convention-
-    #   - MIP defined, ex. "mip-n:phone-cell", "mip-n:homes"
-    #   - dApp defined, ex. "app-myfavapp:id", "app-gigit:username"
-    #   - adhoc/anonymous, ex. "hairColor", "petNames", "139d2275-1d3b-4ba7-9d28-9a1231e7f49d"
+    #   - MIP defined, ex. "mip-n.phone-cell", "mip-n.homes"
+    #   - dApp defined, ex. "app-myfavapp.id", "app-gigit.username"
+    #   - adhoc/anonymous, ex. "mySecretApp.secretField", "hairColor", "petNames", "139d2275-1d3b-4ba7-9d28-9a1231e7f49d"
 
     type @1 :Text;
     # type is a string that represents a 'semi-opionated' type definition 
     # consisting of
     #   - built-in types, ex. "Text", "Bool", "UInt32", "Data", etc. see https://capnproto.org/language.html#built-in-types
     #   - protocol types, ex. "Relation", "List(RelationProof)", "List(Text)", etc.
-    #   - mip shape types, ex. "MIP-N.PhoneNumber", "MIP-3.Car"
-    #   - app shape types, ex. "APP-abc.Widget-1"
+    #   - mip shape types, ex. "MIP-N:PhoneNumber", "MIP-3:Car"
+    #   - app shape types, ex. "APP-abc:Widget-1"
 }
 
 struct MetaShape {
@@ -76,8 +74,17 @@ interface ProfileRepo {
     getShape @3 (profileId: ProfileId, shape: MetaShape) -> (data: Metadata);
     setShape @3 (profileId: ProfileId, shapeData: Metadata) -> (Void);
 }
-
 ```
+
+Using these capnproto protocol structures the metadata can then 'shaped' into whatever 
+granularity fits the use case. There can be standardized shapes (defined by MIPs) 
+for things like:
+- Profile types (Persona, dApp, etc.) or individual elements (Persona:UserName, 
+    Persona:Avatar, dApp:Id, dApp:Name, etc.)
+- Relation types (Contact, AppUser) or individual elements (Contact:Address, 
+    Contact:Type, AppUser:Id)
+Or adhoc/anonymous shapes, not 'meant to be shared' with other apps 
+(mySecretApp:myField, '139d2275-1d3b-4ba7-9d28-9a1231e7f49d:1')
 ## Rationale
 Using capnproto protocol definitions for low level elements of the Mercury API 
 provides a number of desired performance advantages-
@@ -86,6 +93,6 @@ provides a number of desired performance advantages-
 - On the server, Profile/Relation data can be natively stored in a hash table that can be used for efficient indexing/lookup for API (network crawlers and dApps)
 - Client calls to the server to retrieve Profile/Relation data need not transform the in memory representation, that can happen via the Connect SDK client instead
 ## Backwards Compatibility
-Nor applicable
+Not applicable
 ## Copyright
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
