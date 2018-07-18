@@ -83,6 +83,7 @@ for things like:
     Persona:Avatar, dApp:Id, dApp:Name, etc.)
 - Relation types (Contact, AppUser) or individual elements (Contact:Address, 
     Contact:Type, AppUser:Id)
+    
 Or adhoc/anonymous shapes, not 'meant to be shared' with other apps 
 (mySecretApp:myField, '139d2275-1d3b-4ba7-9d28-9a1231e7f49d:1')
 ## Rationale
