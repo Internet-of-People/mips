@@ -7,6 +7,25 @@ author: Byron Blattel (@alchebyte) and others
 created: 2018-07-13
 ---
 
+- [MIP Purpose and Guidelines](#mip-purpose-and-guidelines)
+  - [What is a MIP?](#what-is-a-mip)
+  - [MIP Rationale](#mip-rationale)
+  - [MIP Types](#mip-types)
+  - [MIP Work Flow](#mip-work-flow)
+  - [What belongs in a successful MIP?](#what-belongs-in-a-successful-mip)
+  - [MIP Formats and Templates](#mip-formats-and-templates)
+  - [MIP Header Preamble](#mip-header-preamble)
+    - [Author header](#author-header)
+  - [Auxiliary Files](#auxiliary-files)
+  - [Transferring MIP Ownership](#transferring-mip-ownership)
+  - [MIP Editors](#mip-editors)
+  - [MIP Editor Responsibilities](#mip-editor-responsibilities)
+  - [History](#history)
+    - [Bibliography](#bibliography)
+  - [Copyright](#copyright)
+
+# MIP Purpose and Guidelines
+
 ## What is a MIP?
 
 MIP stands for Mercury Improvement Proposal. A MIP is a design document providing information to the Libertaria community, or describing a new feature for Mercury or its processes or environment. The MIP should provide a concise technical specification of the feature and a rationale for the feature. The MIP author is responsible for building consensus within the community and documenting dissenting opinions.
@@ -22,10 +41,10 @@ For Mercury implementers, MIPs are a convenient way to track the progress of the
 There are three types of MIP:
 
 - A **Standards** MIP describes any change that affects most or all Mercury implementations, such as a change to the network protocol, a shared schema, proposed application standards/conventions, or any change or addition that affects the interoperability of applications using Mercury. Furthermore Standards MIPs can be broken down into the following categories. Standards MIPs consist of three parts, a design document, implementation, and finally if warranted an update to the [formal specification].
-  - **Core** - includes improvements around...
-  - **Networking** - includes improvements around...
-  - **Protocol** - includes improvements around client-server and server-server protocols
-  - **Schema** - API-level standard schemas for shared structured data (ex. profiles/relationships).
+  - **Client** - includes changes bound to client implementations.
+  - **Node** - includes changes mostly invisible outside home node implementations.
+  - **Protocol** - includes changes clients communicate with home nodes, or nodes with each other.
+  - **Schema** - API-level standard schemas for shared structured data (ex. profiles/relationships). These help to form conventions among dApps and help Connect to provide standard user interface elements for them.
 - An **Informational** MIP describes an Mercury design issue, or provides general guidelines or information to the Mercury community, but does not propose a new feature. Informational MIPs do not necessarily represent Mercury community consensus or a recommendation, so users and implementers are free to ignore Informational MIPs or follow their advice.
 - A **Process** MIP describes a process surrounding Mercury or proposes a change to (or an event in) a process. Process MIPs are like Standards MIPs but apply to areas other than the Mercury protocol itself. They may propose an implementation, but not to Mercury's codebase; they often require community consensus; unlike Informational MIPs, they are more than recommendations, and users are typically not free to ignore them. Examples include procedures, guidelines, changes to the decision-making process, and changes to the tools or environment used in Mercury development.
 
@@ -41,30 +60,27 @@ Parties involved in the process are you, the champion or *MIP author*, the [*MIP
 
 Your role as the champion is to write the MIP using the style and format described below, shepherd the discussions in the appropriate forums, and build community consensus around the idea. Following is the process that a successful MIP will move along:
 
-```
-[ DRAFT ] -> ( VOTE ) -> [ ACCEPTED ] -> [ FINAL ] ... * SUPERCEDED *
-                                      -> [ DEFERRED ]
-                         [ REJECTED ]
-```
+<!-- You can edit the following diagram at https://www.yworks.com/yed-live/#file=https://gist.githubusercontent.com/wigy-opensource-developer/37088b76e6e1cf1829f4887176ee75a0/raw/MIP%20workflow and then exporting it to PNG -->
+![workflow diagram](../assets/new/workflow.png)
 
 Each status change is requested by the MIP author and reviewed by the MIP editors. Use a pull request to update the status. Please include a link to where people should continue discussing your MIP. The MIP editors will process these requests as per the conditions below.
 
-* **Draft** -- Once the champion has asked the Mercury community whether an idea has any chance of support, they will write and submit a draft MIP as a [pull request]. The PR will initiate a discussion with the MIP editor(s) to prepare the **Draft** MIP for a vote.
-  * :arrow_right: **Vote** (*pending*) -- If/when requirements for MIP submission are met, a MIP editor will assign the MIP a number (generally the PR number related to the MIP) and merge your pull request. The MIP editor will not unreasonably deny an MIP.
-  * :x: **Draft** -- Reasons for denying **Vote** (*pending*) status include being too unfocused, too broad, duplication of effort, being technically unsound, not providing proper motivation or addressing backwards compatibility, or not in keeping with the [Libertaria Bluepaper](https://drive.google.com/file/d/10dRjiuRzcC3TlaKGYFA4duG7FlfUtH7L/view).
-* **Vote** -- Once the first draft has been merged, you may submit follow-up pull requests with further changes to your MIP until such point as you believe the MIP to be mature and ready to proceed to the next status via a Core/Community vote. To advance the MIP to a vote, add the 'VOTE' tag to the draft MIP PR. This will notify the MIP editors to put the MIP up for vote by the Core/Community. The vote will have one of four outcomes-
-  * :arrow_right: **Accepted** (Standards MIPs) -- The Libertaria Developers will assign a target SDK version for release of the implementation. Once implemented the **Accepted** MIP will 'automatically' become **Final** for the SDK version it was first implemented in.
-  * :arrow_right: **Final** (Information and Process MIPs) -- A successful **Vote** without material changes or unaddressed complaints will become Final.
-  * :x: **Rejected** -- Voting results in community closing this MIP submission permanently. The draft PR will remain in the MIPs repo for historical purposes.
-  * :x: **Draft** --  Voting results in material changes or substantial unaddressed complaints will cause the MIP to revert to **Draft**.
-* **Accepted** -- This is being implemented by Libertaria Developers and has a target SDK assigned.
-  * :arrow_right: **Final** -- Standards MIPs must be implemented before they can be considered **Final**. When the implementation is complete and supported by the community, the status will 'automatically' be considered **Final**.
-* **Final** -- This MIP represents the current state-of-the-art. A Final MIP should only be updated to correct errata.
+- **Draft** -- Once the champion has asked the Mercury community whether an idea has any chance of support, they will write and submit a draft MIP as a [pull request]. The PR will initiate a discussion with the MIP editor(s) to prepare the **Draft** MIP for a vote.
+  - :arrow_right: **Vote** (*pending*) -- If/when requirements for MIP submission are met, a MIP editor will assign the MIP a number (generally the PR number related to the MIP) and merge your pull request. The MIP editor will not unreasonably deny an MIP.
+  - :x: **Draft** -- Reasons for denying **Vote** (*pending*) status include being too unfocused, too broad, duplication of effort, being technically unsound, not providing proper motivation or addressing backwards compatibility, or not in keeping with the [Libertaria Bluepaper](https://drive.google.com/file/d/10dRjiuRzcC3TlaKGYFA4duG7FlfUtH7L/view).
+- **Vote** -- Once the first draft has been merged, you may submit follow-up pull requests with further changes to your MIP until such point as you believe the MIP to be mature and ready to proceed to the next status via a Core/Community vote. To advance the MIP to a vote, add the 'VOTE' tag to the draft MIP PR. This will notify the MIP editors to put the MIP up for vote by the Core/Community. The vote will have one of four outcomes-
+  - :arrow_right: **Accepted** (Standards MIPs) -- The Libertaria Developers will assign a target SDK version for release of the implementation. Once implemented the **Accepted** MIP will 'automatically' become **Final** for the SDK version it was first implemented in.
+  - :arrow_right: **Final** (Information and Process MIPs) -- A successful **Vote** without material changes or unaddressed complaints will become Final.
+  - :x: **Rejected** -- Voting results in community closing this MIP submission permanently. The draft PR will remain in the MIPs repo for historical purposes.
+  - :x: **Draft** --  Voting results in material changes or substantial unaddressed complaints will cause the MIP to revert to **Draft**.
+- **Accepted** -- This is being implemented by Libertaria Developers and has a target SDK assigned.
+  - :arrow_right: **Final** -- Standards MIPs must be implemented before they can be considered **Final**. When the implementation is complete and supported by the community, the status will 'automatically' be considered **Final**.
+- **Final** -- This MIP represents the current state-of-the-art. A Final MIP should only be updated to correct errata.
 
 Other exceptional statuses include:
 
-* **Deferred** -- This is for **Accepted** (Standards) MIPs that have been delayed to a later SDK for implemenation (for technical or other reasons).
-* **Superseded** -- An MIP which was previously **Final** but is no longer considered state-of-the-art. Another MIP will be in Final status and reference the Superseded MIP.
+- **Deferred** -- This is for **Accepted** (Standards) MIPs that have been delayed to a later SDK for implemenation (for technical or other reasons).
+- **Superseded** -- An MIP which was previously **Final** but is no longer considered state-of-the-art. Another MIP will be in Final status and reference the Superseded MIP.
 
 ## What belongs in a successful MIP?
 
@@ -87,37 +103,33 @@ Image files should be included in a subdirectory of the `assets` folder for that
 
 ## MIP Header Preamble
 
-Each MIP must begin with an RFC 822 style header preamble, preceded and followed by three hyphens (`---`). The headers must appear in the following order. Headers marked with "*" are optional and are described below. All other headers are required.
+Each MIP must begin with an RFC 822 style header preamble, preceded and followed by three hyphens (`---`). The headers must appear in the following order. Headers marked with "*" are optional and are described below. All other headers are required. See an example at the beginning of the [proposal template](mip-x.md).
 
-` mip:` <MIP number> (this is determined by the MIP editor)
+`mip:` \<MIP number> (this is determined by the MIP editor)
 
-` title:` <MIP title>
+`title:` \<MIP title>
 
-` author:` <a list of the author's or authors' name(s) and/or username(s), or name(s) and email(s). Details are below.>
+`author:` \<a list of the author's or authors' name(s) and/or username(s), or name(s) and email(s). Details are below.>
 
-` * discussions-to:` <url>
+`status:` \<Draft | Vote | Accepted | Final | Active | Deferred | Rejected | Superseded>
 
-` status:` <Draft | Vote | Accepted | Final | Active | Deferred | Rejected | Superseded>
+`type:` \<Standards | Informational | Meta>
 
-`* review-period-end: YYYY-MM-DD
+`category:` * \<Core | Networking | Protocol | Schema>
 
-` type: `<Standards | Informational | Meta>
+`created:` * \<date created on, in ISO 8601 (yyyy-mm-dd) format>
 
-` * category:` <Core | Networking | Protocol | Schema>
+`targetSDK:` * \<assigned by MIP editor/Core developers for future implementation of **Accepted** MIPs>
 
-` created:` <date created on, in ISO 8601 (yyyy-mm-dd) format>
+`finalSDK:` * \<assigned by MIP editor on reaching **Final** status>
 
-` * targetSDK:` <assigned by MIP editor/Core developers for future implementation of **Accepted** MIPs>
+`requires:` * \<MIP number(s)>
 
-` * finalSDK:`  <assigned by MIP editor on reaching **Final** status>
+`replaces:` * \<MIP number(s)>
 
-` * requires:` <MIP number(s)>
+`superseded-by:` * \<MIP number(s)>
 
-` * replaces:` <MIP number(s)>
-
-` * superseded-by:` <MIP number(s)>
-
-#### Author header
+### Author header
 
 The author header optionally lists the names, email addresses or usernames of the authors/owners of the MIP. Those who prefer anonymity may use a username only, or a first name and a username. The format of the author header value must be:
 
@@ -149,7 +161,7 @@ Headers that permit lists must separate elements with commas.
 
 ## Auxiliary Files
 
-MIPs may include auxiliary files such as diagrams. Such files must be named MIP-XXXX-Y.ext, where “XXXX” is the MIP number, “Y” is a serial number (starting at 1), and “ext” is replaced by the actual file extension (e.g. “png”).
+MIPs may include auxiliary files such as diagrams or even sample code. Such files must be put under the `assets/new` folder during draft and vote phase. The editors will move them to the `assets/MIP-<number>` folder and update all references when the MIP is accepted and is assigned a number.
 
 ## Transferring MIP Ownership
 
@@ -161,11 +173,9 @@ If you are interested in assuming ownership of an MIP, send a message asking to 
 
 The current MIP editors are
 
-` * Wigy (@wigy-opensource-developer)`
-
-` * Bartmoss (@izolyomi)`
-
-` * Byron (@alchebyte)`
+- Wigy ([@wigy-opensource-developer](https://github.com/wigy-opensource-developer))
+- Bartmoss ([@izolyomi](https://github.com/izolyomi))
+- Byron ([@alchebyte](https://github.com/alchebyte))
 
 ## MIP Editor Responsibilities
 
@@ -176,6 +186,8 @@ For each new MIP that comes in, an editor does the following:
 - Check the MIP for language (spelling, grammar, sentence structure, etc.), markup (Github flavored Markdown), code style
 
 If the MIP isn't ready, the editor will send it back to the author for revision, with specific instructions.
+
+Editors will initiate the community voting when the draft is qualified for it.
 
 Once the MIP is ready for the repository, the MIP editor will:
 
