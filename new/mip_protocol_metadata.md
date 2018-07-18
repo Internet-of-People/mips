@@ -28,17 +28,17 @@ struct MetaType {
 
     key @0 :Text;
     # key is string (optionally) preceded by a namespace and colon 
-    # key 'type' is inferred from string by convention-
+    # key hierarchy/inheritance is inferred from string by convention-
     #   - MIP defined, ex. "mip-n.phone-cell", "mip-n.homes"
     #   - dApp defined, ex. "app-myfavapp.id", "app-gigit.username"
     #   - adhoc/anonymous, ex. "mySecretApp.secretField", "hairColor", "petNames", "139d2275-1d3b-4ba7-9d28-9a1231e7f49d"
 
     type @1 :Text;
-    # type is a string that represents a 'semi-opionated' type definition 
+    # type is a string that represents a 'semi-opinionated' type definition 
     # consisting of
     #   - built-in types, ex. "Text", "Bool", "UInt32", "Data", etc. see https://capnproto.org/language.html#built-in-types
     #   - protocol types, ex. "Relation", "List(RelationProof)", "List(Text)", etc.
-    #   - mip shape types, ex. "MIP-N:PhoneNumber", "MIP-3:Car"
+    #   - mip shape types, ex. "MIP-N:Persona:PhoneNumber", "MIP-N:Persona:...", "MIP-3:Car"
     #   - app shape types, ex. "APP-abc:Widget-1"
 }
 
@@ -83,7 +83,7 @@ for things like:
     Persona:Avatar, dApp:Id, dApp:Name, etc.)
 - Relation types (Contact, AppUser) or individual elements (Contact:Address, 
     Contact:Type, AppUser:Id)
-    
+
 Or adhoc/anonymous shapes, not 'meant to be shared' with other apps 
 (mySecretApp:myField, '139d2275-1d3b-4ba7-9d28-9a1231e7f49d:1')
 ## Rationale
