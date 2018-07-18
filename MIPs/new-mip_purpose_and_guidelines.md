@@ -98,8 +98,7 @@ Each MIP should have the following parts:
 
 ## MIP Formats and Templates
 
-MIPs should be written in [markdown] format.
-Image files should be included in a subdirectory of the `assets` folder for that MIP as follow: `assets/mip-X` (for mip **X**). When linking to an image in the MIP, use relative links such as `../assets/mip-X/image.png`.
+MIPs should be written in [markdown] format and should pass [markdownlint] settings defined in this repository.
 
 ## MIP Header Preamble
 
@@ -161,7 +160,7 @@ Headers that permit lists must separate elements with commas.
 
 ## Auxiliary Files
 
-MIPs may include auxiliary files such as diagrams or even sample code. Such files must be put under the `assets/new` folder during draft and vote phase. The editors will move them to the `assets/MIP-<number>` folder and update all references when the MIP is accepted and is assigned a number.
+MIPs may include auxiliary files such as diagrams or even sample code. Such files must be put under the `assets/new` folder during draft and vote phase. The editors will move them to the `assets/MIP-<number>` folder and update all references when the MIP is accepted and is assigned a number. Always link to these files with a relative path like `../assets/MIP-1/workflow.png`
 
 ## Transferring MIP Ownership
 
@@ -205,13 +204,13 @@ The editors don't pass judgment on MIPs. We merely do the administrative & edito
 
 ## History
 
-This document was derived heavily from [Ethereum's MIP1] written by Martin Becze, Hudson Jameson and others which in turn was derived from [Bitcoin's BIP-0001] written by Amir Taaki which in turn was derived from [Python's PEP-0001]. In many places text was simply copied and modified.
+This document was derived heavily from Ethereum's EIP1 written by Martin Becze, Hudson Jameson and others which in turn was derived from Bitcoin's BIP-0001 written by Amir Taaki which in turn was derived from Python's PEP-0001. In many places text was simply copied and modified.
 
 ### Bibliography
 
-[Ethereum's MIP1]: https://github.com/libertaria-project/MIPs/blob/master/MIPS/mip-1.md
-[Bitcoin's BIP-0001]: https://github.com/bitcoin/bips
-[Python's PEP-0001]: https://www.python.org/dev/peps/
+- [Ethereum's EIP1](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1.md)
+- [Bitcoin's BIP-0001](https://github.com/bitcoin/bips/blob/master/bip-0001.mediawiki/)
+- [Python's PEP-0001](https://www.python.org/dev/peps/pep-0001/)
 
 ## Copyright
 
