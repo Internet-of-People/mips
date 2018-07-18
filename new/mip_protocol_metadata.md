@@ -25,16 +25,15 @@ standardized elements representing the nodes and edges that define the OSG.
 The Profile (node) and Relation (edge) data structures of the Mercury OSG are 
 defined with the following capnproto protocol objects.
 ```
-# proposal for metadata formalization via shape's of a semi-opinionated, typed 
-# key-value pair, metadata repository
-struct MetaType
-{
+struct MetaType {
+    # typed key for key-value dictionary/map container
+
     key @0 :Text;
     # key is string (optionally) preceded by a namespace and colon 
     # key 'type' is inferred from string by convention-
     #   - MIP defined, ex. "mip-n:phone-cell", "mip-n:homes"
     #   - dApp defined, ex. "app-myfavapp:id", "app-gigit:username"
-    #   - ad hoc/anonymous, ex. "hairColor", "petNames", "139d2275-1d3b-4ba7-9d28-9a1231e7f49d"
+    #   - adhoc/anonymous, ex. "hairColor", "petNames", "139d2275-1d3b-4ba7-9d28-9a1231e7f49d"
 
     type @1 :Text;
     # type is a string that represents a 'semi-opionated' type definition 
@@ -45,17 +44,17 @@ struct MetaType
     #   - app shape types, ex. "APP-abc.Widget-1"
 }
 
-# Duck (run time) or structural/property-based (storage/wire time) typing is achieved 
-# by created a list of MetaTypes. The definition/instance of that list of types 
-# can be thought of as a 'shape' for the data
-struct MetaShape
-{
+struct MetaShape {
+    # Duck/adhoc (run time) or structural/property-based (storage/wire time) typing is achieved 
+    # by created a list of MetaTypes. A definition/instance of that list of MetaTypes 
+    # can be thought of as a 'shape' for the data
+
     types @0 :List(MetaType);
 }
 
-# metadata repository/container
-struct MetaData
-{
+struct MetaData {
+    # MetaType/value dictionary/map container, stores all available shapes
+    
     entries @0 :List(Entry);
     struct Entry
     {
@@ -64,21 +63,18 @@ struct MetaData
     }
 }
 
-struct Profile
-{
+struct Profile {
     # homes, addresses, appId are moved to OwnProfile.data
 }
 
-struct OwnProfile
-{
+struct OwnProfile {
     profile     @0 : Profile;
-    data        @2 : Metadata;
+    data        @2 : MetaData;
 }
 
-interface ProfileRepo
-{
+interface ProfileRepo {
     getShape @3 (profileId: ProfileId, shape: MetaShape) -> (data: Metadata);
-    setShape @3 (profileId: ProfileId, shape: MetaShape, data: Metadata) -> ();
+    setShape @3 (profileId: ProfileId, shapeData: Metadata) -> (Void);
 }
 
 ```
