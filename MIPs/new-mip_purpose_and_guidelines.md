@@ -1,10 +1,10 @@
 ---
 mip: 1
 title: MIP Purpose and Guidelines
-status: Draft
+status: Accepted
 type: Process
 author: Byron Blattel (@alchebyte) and others
-created: 2018-07-13
+created: 2018-07-23
 ---
 
 - [MIP Purpose and Guidelines](#mip-purpose-and-guidelines)
@@ -102,35 +102,35 @@ MIPs should be written in [markdown] format and should pass [markdownlint] setti
 
 ## MIP Header Preamble
 
-Each MIP must begin with an RFC 822 style header preamble, preceded and followed by three hyphens (`---`). The headers must appear in the following order. Headers marked with "*" are optional and are described below. All other headers are required. See an example at the beginning of the [proposal template](mip-x.md).
+Each MIP must begin with an RFC 822 style header preamble, preceded and followed by three hyphens (`---`). The headers must appear in the following order. Headers marked with "*" are required and are described below. All other headers are optional. See an example at the beginning of the [proposal template](mip-x.md).
 
-`mip:` \<MIP number> (this is determined by the MIP editor)
+`mip:` * \<MIP number> (this is determined by the MIP editor)
 
-`title:` \<MIP title>
+`title:` * \<MIP title>
 
-`author:` \<a list of the author's or authors' name(s) and/or username(s), or name(s) and email(s). Details are below.>
+`author:` * \<a list of the author's or authors' name(s) and/or username(s), or name(s) and email(s). Details are below.>
 
-`status:` \<Draft | Vote | Accepted | Final | Active | Deferred | Rejected | Superseded>
+`status:` * \<Draft | Vote | Accepted | Final | Active | Deferred | Rejected | Superseded>
 
-`type:` \<Standards | Informational | Meta>
+`type:` * \<Standards | Informational | Meta>
 
-`category:` * \<Core | Networking | Protocol | Schema>
+`category:` \<Core | Networking | Protocol | Schema> (required for type Standards)
 
-`created:` * \<date created on, in ISO 8601 (yyyy-mm-dd) format>
+`created:` * \<assigned by MIP editor on reaching **Accepted** status> (date created on, in ISO 8601 (yyyy-mm-dd) format)
 
 `targetSDK:` * \<assigned by MIP editor/Core developers for future implementation of **Accepted** MIPs>
 
 `finalSDK:` * \<assigned by MIP editor on reaching **Final** status>
 
-`requires:` * \<MIP number(s)>
+`requires:` \<MIP number(s)>
 
-`replaces:` * \<MIP number(s)>
+`replaces:` \<MIP number(s)>
 
-`superseded-by:` * \<MIP number(s)>
+`superseded-by:` \<MIP number(s)>
 
 ### Author header
 
-The author header optionally lists the names, email addresses or usernames of the authors/owners of the MIP. Those who prefer anonymity may use a username only, or a first name and a username. The format of the author header value must be:
+The `author` header optionally lists the names, email addresses or usernames of the authors/owners of the MIP. Those who prefer anonymity may use a username only, or a first name and a username. The format of the author header value must be:
 
 Random J. User &lt;address@dom.ain&gt;
 
@@ -144,17 +144,15 @@ Random J. User
 
 if the email address is not given.
 
-While an MIP is a draft, a discussions-to header will indicate the mailing list or URL where the MIP is being discussed in addition to the comments in the MIP PR. As mentioned above, examples for places to discuss your MIP include ???. No discussions-to header is necessary if the MIP is being discussed privately with the author.
+The `type` header specifies the type of MIP: Standards, Informational, or Process. If the type is Standards please include the subcategory (Core, Networking, Protocol, or Schema).
 
-The type header specifies the type of MIP: Standards, Informational, or Process. If the type is Standards please include the subcategory (Core, Networking, Protocol, or Schema).
+The `category` header specifies the MIP's category. This is required for Standards MIPs only.
 
-The category header specifies the MIP's category. This is required for Standards MIPs only.
+The `created` header records the date that the MIP was assigned a number. Both headers should be in yyyy-mm-dd format, e.g. 2001-08-14.
 
-The created header records the date that the MIP was assigned a number. Both headers should be in yyyy-mm-dd format, e.g. 2001-08-14.
+MIPs may have a `requires` header, indicating the MIP numbers that this MIP depends on.
 
-MIPs may have a requires header, indicating the MIP numbers that this MIP depends on.
-
-MIPs may also have a superseded-by header indicating that an MIP has been rendered obsolete by a later document; the value is the number of the MIP that replaces the current document. The newer MIP must have a Replaces header containing the number of the MIP that it rendered obsolete.
+MIPs may also have a `superseded-by` header indicating that an MIP has been rendered obsolete by a later document; the value is the number of the MIP that replaces the current document. The newer MIP must have a `replaces` header containing the number of the MIP that it rendered obsolete.
 
 Headers that permit lists must separate elements with commas.
 
