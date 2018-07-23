@@ -1,10 +1,10 @@
 ---
 mip: 1
 title: MIP Purpose and Guidelines
-status: Accepted
+status: Draft
 type: Process
 author: Byron Blattel (@alchebyte) and others
-created: 2018-07-23
+created: 2018-07-13
 ---
 
 - [MIP Purpose and Guidelines](#mip-purpose-and-guidelines)
@@ -61,7 +61,7 @@ Parties involved in the process are you, the champion or *MIP author*, the [*MIP
 Your role as the champion is to write the MIP using the style and format described below, shepherd the discussions in the appropriate forums, and build community consensus around the idea. Following is the process that a successful MIP will move along:
 
 <!-- You can edit the following diagram at https://www.yworks.com/yed-live/#file=https://gist.githubusercontent.com/wigy-opensource-developer/37088b76e6e1cf1829f4887176ee75a0/raw/MIP%20workflow and then exporting it to PNG -->
-![workflow diagram](../assets/new/workflow.png)
+![workflow diagram](../assets/MIP-1/workflow.png)
 
 Each status change is requested by the MIP author and reviewed by the MIP editors. Use a pull request to update the status. Please include a link to where people should continue discussing your MIP. The MIP editors will process these requests as per the conditions below.
 
