@@ -7,22 +7,29 @@ type: Standards
 category: Protocol
 created: 2018-7-15
 ---
-## Simple Summary
+# Simple Summary
+
 This MIP describes a basic protocol level method for storing and transmitting 
 metadata related to objects of interest elsewhere in the protocol (Profile, 
 OwnProfile, Relation, etc.)
+
 ## Abstract
+
 Described here is a generalized methodology for storing, requesting, and 
 transmitting (semi-opinionated) metadata from server to client within the 
 Mercury SDK.
+
 ## Motivation
+
 To ensure interoperability between Mercury dApps, a standardized methodology 
 for handling metadata for protocol level objects is desired. Additionally, a 
 schema for Profiles and their Relationships must be defined. A main goal for 
 Mercury is enabling the Open Social Graph. This metadata will represent the 
 standardized elements representing the nodes and edges that define the OSG.
+
 ## Specification
-```
+
+```capnproto
 struct MetaType {
     # typed key for key-value dictionary/map container
 
@@ -76,24 +83,32 @@ interface ProfileRepo {
 }
 ```
 
-Using these capnproto protocol structures the metadata can then 'shaped' into whatever 
-granularity fits the use case. There can be standardized shapes (defined by MIPs) 
+Using these capnproto protocol structures the metadata can then 'shaped' into whatever
+granularity fits the use case. There can be standardized shapes (defined by MIPs)
 for things like:
-- Profile types (Persona, dApp, etc.) or individual elements (Persona:UserName, 
+
+- Profile types (Persona, dApp, etc.) or individual elements (Persona:UserName,
     Persona:Avatar, dApp:Id, dApp:Name, etc.)
-- Relation types (Contact, AppUser) or individual elements (Contact:Address, 
+- Relation types (Contact, AppUser) or individual elements (Contact:Address,
     Contact:Type, AppUser:Id)
 
-Or adhoc/anonymous shapes, not 'meant to be shared' with other apps 
+Or adhoc/anonymous shapes, not 'meant to be shared' with other apps
 (mySecretApp:myField, '139d2275-1d3b-4ba7-9d28-9a1231e7f49d:1')
+
 ## Rationale
-Using capnproto protocol definitions for low level elements of the Mercury API 
+
+Using capnproto protocol definitions for low level elements of the Mercury API
 provides a number of desired performance advantages-
+
 - Profile/Relation data is maximally compressed for the 'wire', reducing network bandwidth requirements
 - Profile/Relation data requires minimal memory footprint because it is stored and accessed in native memory via a platform specific Connect SDK for both server and client
 - On the server, Profile/Relation data can be natively stored in a hash table that can be used for efficient indexing/lookup for API (network crawlers and dApps)
 - Client calls to the server to retrieve Profile/Relation data need not transform the in memory representation, that can happen via the Connect SDK client instead
+
 ## Backwards Compatibility
+
 Not applicable
+
 ## Copyright
+
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
