@@ -7,7 +7,7 @@ type: Standards
 category: Protocol
 created: 
 ---
-# MIP Process and Guidelines
+# Mercury Protocol Metadata
 
 ## Simple Summary
 
