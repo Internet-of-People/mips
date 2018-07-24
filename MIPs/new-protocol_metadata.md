@@ -19,7 +19,7 @@ Described here is a generalized methodology for storing, requesting, and transmi
 
 ## Motivation
 
-To ensure interoperability between Mercury dApps, a standardized methodology for handling metadata for protocol level objects is desired. Additionally, a schema for Profiles and their Relationships must be defined. A main goal for Mercury is enabling the Open Social Graph. This metadata will represent the standardized elements representing the nodes and edges that define the OSG.
+To ensure interoperability between standardized Mercury dApps, a methodology for handling metadata for protocol level objects is desired. Additionally, a schema for Profiles and their Relationships must be defined. A main goal for Mercury is enabling the Open Social Graph. This metadata will represent the standardized elements representing the nodes and edges that define the OSG.
 
 ## Definitions
 
@@ -48,13 +48,29 @@ A Mercury Property is single piece of information in the Profile that has a uniq
     - 'local.petNames'
     - '139d2275-1d3b-4ba7-9d28-9a1231e7f49d')
 
-- `Semantic Type`: Regardless of serialization format (cap'n'proto, protobuf, JSON, BSON, ASN.1 BEM, BEncode, whatever...) the property has a semantic type. Each type should finds its more natural representation on a specific serialization format, but even if the serialization format cannot distinguish between strings, binary data, numbers, dates, time intervals or names, the type system defined by this MIP should give a stong, semantic type to the property.
+- `Semantic Type`: Regardless of serialization format (cap'n'proto, protobuf, JSON, BSON, ASN.1 BEM, BEncode, whatever...) the property has a semantic type. Each type could finds its more natural representation on a specific serialization format. Semantic types have similar forms to Keys:
+  - MIP-defined hierarchical types, such as:
+    - 'MIP3:Person:Name'
+    - 'MIP3:Address'
+    - 'MIP3:Home:MultiAddress'
+  - Application-defined hierarchical property name, such as:
+    - 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Actor.Username'
+    - 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Sparks'
+  - Or an Atomic type defined below
 
-- `Atomic Type`: At the wire level each property has a wire compatible type (which could also be its sematic type)
+- `Atomic Type`: At the wire level each property has a wire compatible [built-in type](https://capnproto.org/language.html#built-in-types) or core [Mercury defined type or struct](https://gitlab.libertaria.community/mercury/client-sdk-rust/blob/develop/home-protocol/protocol/mercury.capnp)
+  - '`Bool`' (boolean)
+  - '`Int8`', '`Int16`', '`Int32`', '`Int64`' (Integers)
+  - '`UInt8`', '`UInt16`', '`UInt32`', '`UInt64`' (Unsigned Integers)
+  - '`Float32`', '`Float64`' (Floating Point Numbers)
+  - '`Text`' (Strings and string based sematic types)
+  - '`Data`' (byte blobs and binary based semantic types)
+  - '`List(T)`' (where T is any other defined type, semantic or atomic)
+  - '`ProfileId`', '`ApplicationId`', '`Signature`', '`RelationProof` (core Mercury defined protocol defines/structs)
 
 ### Schema
 
-A Mercury Schema is a set of properties (with types) that are either present in a given profile or not. If required properties are missing, then that profile does not match this schema. There can be optional properties in a schema that might be present or not. If a property exists with the same key, but different type, then it is not a match. For optional properties, these non-matches must be treated as missing, for required properties, such a non-match means failure of matching the whole schema.
+A Mercury Schema is a set of properties (with types) that are either present in a given profile or not. If required properties are missing, then that profile does not match/represent this schema. There can be optional properties in a schema that might be present or not. If a property exists with the same key, but different type, then it is not a match. For optional properties, these non-matches must be treated as missing, for required properties, such a non-match means failure of matching the whole schema.
 
 The schema should not be transferred together with the profile. Applications and use-cases should define schemas and match them to profiles. So profiles are not strongly typed, and just looking at a profile it does not need to describe what schemas it implements.
 
