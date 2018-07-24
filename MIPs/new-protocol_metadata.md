@@ -64,8 +64,8 @@ A Mercury Property is single piece of information in the Profile that has a uniq
     - 'MIP3:Address'
     - 'MIP3:Home:MultiAddress'
   - Application-defined hierarchical property name, such as:
-    - 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Actor.Username'
-    - 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Sparks'
+    - 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Actor'
+    - 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Spark'
   - Or an Atomic type defined above
 
 ### Schema
