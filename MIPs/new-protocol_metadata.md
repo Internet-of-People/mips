@@ -48,16 +48,6 @@ A Mercury Property is single piece of information in the Profile that has a uniq
     - 'local.petNames'
     - '139d2275-1d3b-4ba7-9d28-9a1231e7f49d')
 
-- `Semantic Type`: Regardless of serialization format (cap'n'proto, protobuf, JSON, BSON, ASN.1 BEM, BEncode, whatever...) the property has a semantic type. Each type could finds its more natural representation on a specific serialization format. Semantic types have similar forms to Keys:
-  - MIP-defined hierarchical types, such as:
-    - 'MIP3:Person:Name'
-    - 'MIP3:Address'
-    - 'MIP3:Home:MultiAddress'
-  - Application-defined hierarchical property name, such as:
-    - 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Actor.Username'
-    - 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Sparks'
-  - Or an Atomic type defined below
-
 - `Atomic Type`: At the wire level each property has a wire compatible [built-in type](https://capnproto.org/language.html#built-in-types) or core [Mercury defined type or struct](https://gitlab.libertaria.community/mercury/client-sdk-rust/blob/develop/home-protocol/protocol/mercury.capnp)
   - '`Bool`' (boolean)
   - '`Int8`', '`Int16`', '`Int32`', '`Int64`' (Integers)
@@ -68,51 +58,69 @@ A Mercury Property is single piece of information in the Profile that has a uniq
   - '`List(T)`' (where T is any other defined type, semantic or atomic)
   - '`ProfileId`', '`ApplicationId`', '`Signature`', '`RelationProof` (core Mercury defined protocol defines/structs)
 
+- `Semantic Type`: Regardless of serialization format (cap'n'proto, protobuf, JSON, BSON, ASN.1 BEM, BEncode, whatever...) the property has a semantic type. Each type could finds its more natural representation on a specific serialization format. Semantic types have similar forms to Keys:
+  - MIP-defined hierarchical types, such as:
+    - 'MIP3:Person:Name'
+    - 'MIP3:Address'
+    - 'MIP3:Home:MultiAddress'
+  - Application-defined hierarchical property name, such as:
+    - 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Actor.Username'
+    - 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Sparks'
+  - Or an Atomic type defined above
+
 ### Schema
 
 A Mercury Schema is a set of properties (with types) that are either present in a given profile or not. If required properties are missing, then that profile does not match/represent this schema. There can be optional properties in a schema that might be present or not. If a property exists with the same key, but different type, then it is not a match. For optional properties, these non-matches must be treated as missing, for required properties, such a non-match means failure of matching the whole schema.
 
-The schema should not be transferred together with the profile. Applications and use-cases should define schemas and match them to profiles. So profiles are not strongly typed, and just looking at a profile it does not need to describe what schemas it implements.
+By representing the schema as a flat list of properties developers can easily combine MIP based shared schemas with their own dApp defined schemas into a single server request for metadata or alternately a fine grained composition tailored to the specific needs of a view in a UI.
+
+The schema should not be transferred together with the profile, it is an independent definition. Applications and use-cases should define schemas and match them to profiles. So profiles are not strongly typed, and just looking at a profile it does not need to describe what schemas it implements.
 
 ## Specification
 
 Cap'n Proto partial definition -
 
 ```capnproto
-struct MetaType {
+struct MetaProperty {
     # typed key for key-value dictionary/map container
 
     key @0 :Text;
-    # key is string (optionally) preceded by a namespace and colon
-    # key hierarchy/inheritance is inferred from string by convention-
-    #   - MIP defined, ex. "mip-n.phone-cell", "mip-n.homes"
-    #   - dApp defined, ex. "app-myfavapp.id", "app-gigit.username"
-    #   - adhoc/anonymous, ex. "mySecretApp.secretField", "hairColor", "petNames", "139d2275-1d3b-4ba7-9d28-9a1231e7f49d"
+    # The unique name of the property in the mapping. This name can have multiple forms:
+    #   - MIP defined, ex. 'MIP3.Persona.Username', 'MIP3.Home.Addresses',
+    #        'MIP3:Home:MultiAddress'
+    #   - dApp defined, ex. 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Actor.Username',
+    #        'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Sparks'
 
-    type @1 :Text;
-    # type is a string that represents a 'semi-opinionated' type definition
-    # consisting of
-    #   - built-in types, ex. "Text", "Bool", "UInt32", "Data", etc. see https://capnproto.org/language.html#built-in-types
-    #   - protocol types, ex. "Relation", "List(RelationProof)", "List(Text)", etc.
-    #   - mip shape types, ex. "MIP-N:Persona:PhoneNumber", "MIP-N:Persona:...", "MIP-3:Car"
-    #   - app shape types, ex. "APP-abc:Widget-1"
+    atomic @1 :Text;
+    # semantic is a string that represents an optional codec-like type definition
+    # semantic types have similar forms to Keys:
+    #   - MIP defined, ex. 'MIP3:Person:Name', 'MIP3:Address', 'MIP3:Home:MultiAddress'
+    #   - dApp defined, ex. 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Actor.Username',
+    #       'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Sparks'
+    #   - An Atomic type defined above
+
+    semantic @1 :Text;
+    # semantic is a string that represents an optional codec-like type definition
+    # semantic types have similar forms to Keys:
+    #   - MIP defined, ex. 'MIP3:Person:Name', 'MIP3:Address', 'MIP3:Home:MultiAddress'
+    #   - dApp defined, ex. 'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Actor.Username',
+    #       'APP.139d2275-1d3b-4ba7-9d28-9a1231e7f49d.Sparks'
+    #   - An Atomic type defined above
 }
 
-struct MetaShape {
-    # Duck/adhoc (run time) or structural/property-based (storage/wire time) typing is achieved
-    # by created a list of MetaTypes. A definition/instance of that list of MetaTypes
-    # can be thought of as a 'shape' for the data
+struct MetaSchema {
+    # A schema is defined by a list of MetaProperty definitions
 
-    types @0 :List(MetaType);
+    types @0 :List(MetaProperty);
 }
 
 struct MetaData {
-    # MetaType/value dictionary/map container, stores all available shapes
+    # MetaProperty/value dictionary/map container, stores all available shapes
 
     entries @0 :List(Entry);
     struct Entry
     {
-        key @0 :MetaType;
+        key @0 :MetaProperty;
         value @2 :Data;
     }
 }
@@ -127,22 +135,10 @@ struct OwnProfile {
 }
 
 interface ProfileRepo {
-    getShape @3 (profileId: ProfileId, shape: MetaShape) -> (data: Metadata);
-    setShape @3 (profileId: ProfileId, shapeData: Metadata) -> (Void);
+    getSchema @3 (profileId: ProfileId, schema: MetaSchema) -> (data: MetaData);
+    setSchema @3 (profileId: ProfileId, data: MetaData) -> (Bool);
 }
 ```
-
-Using these capnproto protocol structures the metadata can then 'shaped' into whatever
-granularity fits the use case. There can be standardized shapes (defined by MIPs)
-for things like:
-
-- Profile types (Persona, dApp, etc.) or individual elements (Persona:UserName,
-    Persona:Avatar, dApp:Id, dApp:Name, etc.)
-- Relation types (Contact, AppUser) or individual elements (Contact:Address,
-    Contact:Type, AppUser:Id)
-
-Or adhoc/anonymous shapes, not 'meant to be shared' with other apps
-(mySecretApp:myField, '139d2275-1d3b-4ba7-9d28-9a1231e7f49d:1')
 
 ## Rationale
 
