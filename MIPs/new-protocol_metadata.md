@@ -1,11 +1,11 @@
 ---
-mip: MIP-2
+mip: 
 title: Protocol Metadata
-author: Byron Blattel (@alchebyte)
+author: Byron Blattel (@alchebyte),  Wigy (@wigy-opensource-developer), Bartmoss (@izolyomi)
 status: Draft
 type: Standards
 category: Protocol
-created: 2018-7-15
+created: 
 ---
 # MIP Process and Guidelines
 
