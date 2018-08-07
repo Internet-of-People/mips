@@ -37,6 +37,14 @@ A Mercury Property is single piece of information in the Profile that has a uniq
 
 ## Specification
 
+The protected data value is stored in a `vault`. Each vault has a unique keypair generated at creation. The public key is used to encrypt the data stored in the vault and the private key is used to decrypt it.
+
+The vault can be open or locked. It's state is derived from the existence of a list of access keys. Each access key is an encrypted copy of the vault's private key, encrypted by the public key of the profile granted access.
+
+An empty set of access keys indicates the vault is open and the data is public. If it is open the value is assumed to be un-encrypted.
+
+If the access keys are not empty, then the data is restricted to those public keys having access to the private key. The private key for the vault can be decrypted using the private key associated with the public key granted access.
+
 ### Pseudo code
 
 ```c
@@ -54,7 +62,7 @@ struct vault {
 
 struct key {
     publicKey: string,      // Profile ID/address/public key that has access
-    encryptedKey: string,   // Private key from vault keypair encrypted with publicKey
+    encryptedKey: string,   // Private key from vault keypair encrypted with this publicKey
 }
 ```
 
