@@ -57,12 +57,12 @@ struct vault {
     // each vault generates a keypair when locked
     publicKey: string, // from keypair, if empty data is public, address in DHT?
     accessKeys: list<key>, // encrypted copies of keypair private key
-    data: string, // encrypted with publicKey
+    data: string, // encrypted with this vault publicKey
 }
 
 struct key {
-    publicKey: string,      // Profile ID/address/public key that has access
-    encryptedKey: string,   // Private key from vault keypair encrypted with this publicKey
+    publicId: string,  // Profile ID/address/public key that has access
+    vaultKey: string,   // Private key from vault keypair encrypted with this publicKey
 }
 ```
 
